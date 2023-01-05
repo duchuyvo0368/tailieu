@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Tìm Mật Khẩu</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="css/util.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <!--===============================================================================================-->
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.css">
+    <!--===============================================================================================-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.js"></script>
+</head>
+
+<body onload="time()">
+    <div id="clock"></div>
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100">
+                <div class="login100-pic js-tilt" data-tilt>
+                    <img src="images/Key-icon.png" alt="IMG">
+                </div>
+
+                <form class="login100-form validate-form">
+                    <span class="login100-form-title">
+                        <i class="fa fa-user-circle-o" aria-hidden="true"></i><Br>
+                        TÌM TÀI KHOẢN
+                    </span>
+                    <div class="wrap-input100 validate-input" data-validate="Email sai hãy làm theo ví dụ: ex@abc.xyz">
+                        <input class="input100" type="text" placeholder="Nhập Email" name="emailInput" id="emailInput" value="" />
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-envelope" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <div class="container-login100-form-btn">
+                        <input type="button" onclick="return RegexEmail('emailInput')" value="Gửi Ngay" />
+                    </div>
+
+                    <div class="text-center p-t-12">
+                        <span class="txt1">
+                            Quay Về Đăng Nhập
+                        </span>
+                        <a class="txt2" href="/index.html">
+                            Tại Đây
+                        </a>
+                    </div>
+                    <div class="text-center p-t-136">
+                        <a class="txt2" href="#">
+                            2019 <i class="fa fa-copyright" aria-hidden="true"></i> Võ Trường | Design by
+                            TruongBinIT
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!--===============================================================================================-->
+    <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/bootstrap/js/popper.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/tilt/tilt.jquery.min.js"></script>
+    <script>
+        $('.js-tilt').tilt({
+            scale: 1.1
+        })
+    </script>
+    <!--===============================================================================================-->
+    <script src="js/main.js"></script>
+    <script type="text/javascript">
+      //  function validate() {
+      //      var email = document.getElementById("email").value;
+       //     if (email == null || email == "") {
+        //        swal("Bạn Chưa Nhập Email", "Vui Lòng Kiểm Tra", "warning");
+        //        return false;
+        //    }
+        //}
+        function RegexEmail(emailInputBox) {
+            var emailStr = document.getElementById(emailInputBox).value;
+            var emailRegexStr = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+            var isvalid = emailRegexStr.test(emailStr);
+            if (!isvalid) {
+                swal("Lỗi! Opps", "Có Thể Bạn Chưa Nhập Email Hoặc Nhập Sai", "error");
+                emailInputBox.focus;
+            }
+            else {
+                swal("Thông Báo!", "Chúng Tôi Đã Gửi Thông Tin Qua Email Cho Bạn!", "success");
+                emailInputBox.focus;
+                window.location = "#";
+
+            }
+        }
+        function time() {
+            var today = new Date();
+            var weekday = new Array(7);
+            weekday[0] = "Chủ Nhật";
+            weekday[1] = "Thứ Hai";
+            weekday[2] = "Thứ Ba";
+            weekday[3] = "Thứ Tư";
+            weekday[4] = "Thứ Năm";
+            weekday[5] = "Thứ Sáu";
+            weekday[6] = "Thứ Bảy";
+            var day = weekday[today.getDay()];
+            var dd = today.getDate();
+            var mm = today.getMonth() + 1; //January is 0!
+            var yyyy = today.getFullYear();
+            var h = today.getHours();
+            var m = today.getMinutes();
+            var s = today.getSeconds();
+            m = checkTime(m);
+            s = checkTime(s);
+            nowTime = h + ":" + m + ":" + s;
+            if (dd < 10) { dd = '0' + dd } if (mm < 10) { mm = '0' + mm } today = day + ', ' + dd + '/' + mm + '/' + yyyy;
+
+            tmp = '<i class="fa fa-clock-o" aria-hidden="true"></i> <span class="date">' + today + ' | ' + nowTime + '</span>';
+
+            document.getElementById("clock").innerHTML = tmp;
+
+            clocktime = setTimeout("time()", "1000", "JavaScript");
+            function checkTime(i) {
+                if (i < 10) {
+                    i = "0" + i;
+                }
+                return i;
+            }
+        }
+    </script>
+</body>
+
+</html>
